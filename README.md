@@ -2,28 +2,3 @@
 <p>Groupe constituée de SAMPEREZ Alexandre(spalexandre13), BADAOUI Walid, CRUZ-MERMY Julien</p>
 <p>Ce projet vise à créer un site web qui répertorie toutes les photos du banc avionniques lors de l'utilisation du banc ou toutes les 24 heures sans utilisations. Ce site web contient la création d'un programme python ainsi que d'une base de donnée fonctionnel</p>
 <h2>Objectif SAE302</h2>
-classDiagram
-    class App
-    class DatabaseManager {
-      +createTableIfNotExists()
-      +insertFaille(Faille): int
-      +getAllFailles(): List~Faille~
-      +getFailleById(int): Faille
-      +getFaillesBySeverity(String): List~Faille~
-      +updateFaille(Faille): boolean
-      +deleteFaille(int): boolean
-    }
-    class ScannerReseau {
-      +addTarget(String)
-      +detecterFaillesSimule()
-      +runFullScan()
-    }
-    class ScanTool {
-      <<interface>>
-      +String name()
-      +List~Faille~ scan(String target)
-    }
-    App --> DatabaseManager
-    App --> ScannerReseau
-    ScannerReseau --> ScanTool
-    DatabaseManager --> Faille
