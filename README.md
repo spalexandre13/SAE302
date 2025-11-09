@@ -1,4 +1,4 @@
-# SAE302 - Prototype Scanner & Gestion des failles 2025/2026
+                    # SAE302 - Prototype Scanner & Gestion des failles 2025/2026
 
 Groupe constituée de **SAMPEREZ Alexandre (spalexandre13)**, **BADAOUI Walid**, **CRUZ-MERMY Julien**
 
@@ -257,4 +257,4 @@ Option 8 → Run full scan
 
 ---
 
-✅ **Ce README sert de documentation, de manuel d’installation et de livrable officiel pour le TD2.**
+✅ **Ce README sert de documentation et  de manuel d’installation.**
