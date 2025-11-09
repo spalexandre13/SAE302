@@ -1,4 +1,4 @@
-                    # SAE302 - Prototype Scanner & Gestion des failles 2025/2026
+SAE302 - Prototype Scanner & Gestion des failles 2025/2026
 
 Groupe constituée de **SAMPEREZ Alexandre (spalexandre13)**, **BADAOUI Walid**, **CRUZ-MERMY Julien**
 
