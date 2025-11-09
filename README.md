@@ -231,15 +231,6 @@ Puis exécuter via :
 ```
 Option 8 → Run full scan
 ```
----
-
-### ✅ Commande de commit finale
-
-```bash
-git add .
-git commit -m "docs: ajout manuel installation + diagramme de classes + démo TD2"
-git push origin dev
-```
 
 ---
 
