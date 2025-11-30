@@ -1,15 +1,19 @@
-SAE302 - Prototype Scanner & Gestion des failles 2025/2026
+# 🛡️ SAE302 - Scanner & Gestion des Failles (Cybersécurité) 2025/2026
 
-Groupe constituée de **SAMPEREZ Alexandre (spalexandre13)**, **BADAOUI Walid**, **CRUZ-MERMY Julien**
-
-Ce projet vise à créer un site web qui répertorie toutes les photos du banc avionniques lors de l'utilisation du banc ou toutes les 24 heures sans utilisations. Ce site web contient la création d'un programme python ainsi que d'une base de donnée fonctionnel.
+**Groupe :** SAMPEREZ Alexandre, BADAOUI Walid, CRUZ-MERMY Julien
 
 ---
 
-## Objectif SAE302
-Prototype Java démontrant le flux : **Scanner (plugins) → Database (SQLite) → Affichage / API**.  
-Version TD2 : simulation et plugin system (`DummyTool`).  
-TD3 : remplacement des simulations par des wrappers d'outils réels (nmap, nikto, ...) et API web.
+## 🎯 Objectif du Projet (Exigence SAE)
+
+Ce projet vise à développer une chaîne complète d'applications communicantes dans le domaine de la cybersécurité:
+
+1.  **Application Java** : Scan du réseau local pour identifier les failles (ports ouverts, services).
+2.  **Base de Données (SQLite)** : Stockage des résultats du scan.
+3.  **Site Web & API JSON** : Lecture des failles depuis la base de données et affichage.
+4.  **Application Android** : Communication avec l'API Web pour visualiser les failles.
+
+Le prototype Java ci-dessous démontre le flux : **Scanner (plugins) → Database (SQLite) → Affichage console**.ns par des wrappers d'outils réels (nmap, nikto, ...) et API web.
 
 ---
 
@@ -28,62 +32,48 @@ TD3 : remplacement des simulations par des wrappers d'outils réels (nmap, nikto
 
 ## Diagramme simplifié des classes (Mermaid)
 
+## 🏗️ Diagramme de l'Architecture Java (Mermaid)
+
+Le cœur du projet Java repose sur l'injection de dépendances et les interfaces, permettant l'ajout de nouveaux outils (plugins) sans modifier l'orchestrateur.
+
 ```mermaid
 classDiagram
-    class App {
-        +main()
-    }
-    class ScannerReseau {
-        -DatabaseManager db
-        -List~ScanTool~ tools
-        -List~String~ targets
-        +ajouterCible(String)
-        +registerTool(ScanTool)
-        +listTools()
-        +runFullScan()
-        +detecterFaillesSimule()
-    }
-    class ScanTool {
-        <<interface>>
-        +name()
-        +scan(target)
-    }
-    class DummyTool {
-        +name()
-        +scan(target)
+    class App {
+        +main()
+    }
+    class ScannerReseau {
+        -DatabaseManager db
+        -List~ScanTool~ tools
+        +runToolCommand(List<String>)
+        +runFullScan()
+    }
+    class ScanTool {
+        <<interface>>
+        +name()
+        +scan(target, type)
+    }
+    class NmapTool {
+        +scan(target, type)
     }
     class DatabaseManager {
-        -String dbPath
-        -Connection connection
-        +createTableIfNotExists()
-        +open()
-        +close()
-        +insertFaille(Faille) : int
-        +getAllFailles() : List~Faille~
-        +getFailleById(int) : Faille
-        +getFaillesBySeverity(String) : List~Faille~
-        +updateFaille(Faille) : boolean
-        +deleteFaille(int) : boolean
-    }
-    class Faille {
-        -int id
-        -String nom
-        -String description
-        -String ip
-        -String severite
-        -String source
-        -String dateDetection
-        -String reference
-    }
+        +createTable()
+        +insertFaille(Faille) : int
+        +listFailles() : List~Faille~
+    }
+    class Faille {
+        -int id
+        -String nom
+        -String ip
+        -String severite
+        -String dateDetection
+    }
 
-    App --> ScannerReseau
-    App --> DatabaseManager
-    ScannerReseau --> ScanTool
-    ScannerReseau --> DatabaseManager
-    DummyTool ..|> ScanTool
-    DatabaseManager --> Faille
+    App --> ScannerReseau
+    ScannerReseau --> DatabaseManager
+    ScannerReseau --> ScanTool
+    NmapTool ..|> ScanTool
+    DatabaseManager --> Faille
 ```
-
 ---
 
 ## ⚙️ Manuel d’installation et d’utilisation
@@ -121,7 +111,9 @@ classDiagram
 Dans le dossier `src` :
 
 ```bash
-javac *.java
+cd <repo>/src
+# Compilation de tous les fichiers .java en incluant le JAR dans lib/
+javac -cp "../lib/*:." *.java
 ```
 
 ---
@@ -137,7 +129,8 @@ java -cp ".;sqlite-jdbc-3.51.0.0.jar" App
 #### Sous **Linux / macOS**
 
 ```bash
-java -cp ".:sqlite-jdbc-3.51.0.0.jar" App
+# Exécution du programme
+java -cp "../lib/sqlite-jdbc-3.51.0.0.jar:." App
 ```
 
 ---
@@ -242,8 +235,6 @@ Option 8 → Run full scan
 * Pour toute question : ouvrir une *Issue* dans le dépôt GitHub.
 
 ---
-
-### 📦 Livraison TD2
 
 **Fichiers obligatoires :**
 
