@@ -1,4 +1,4 @@
-# 🛡️ SAE302 - Scanner & Gestion des Failles (Cybersécurité) 2025/2026
+<img width="791" height="715" alt="image" src="https://github.com/user-attachments/assets/0babc2ff-7a3e-488a-b52f-59de323cef23" /># 🛡️ SAE302 - Scanner & Gestion des Failles (Cybersécurité) 2025/2026
 
 **Groupe :** SAMPEREZ Alexandre, BADAOUI Walid, CRUZ-MERMY Julien
 
@@ -247,7 +247,9 @@ Option 8 → Run full scan
 * `IA_report_<nom>.md`
 
 ---
-![Uploading image.png…]()
+### Maquette de l'application android
+<img width="791" height="715" alt="PremierVisuelAndroid" src="https://github.com/user-attachments/assets/6327cb7a-10f8-4715-8b85-e61b5ca05946" />
+
 
 
 ✅ **Ce README sert de documentation et  de manuel d’installation.**
