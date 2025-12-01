@@ -247,5 +247,7 @@ Option 8 → Run full scan
 * `IA_report_<nom>.md`
 
 ---
+![Uploading image.png…]()
+
 
 ✅ **Ce README sert de documentation et  de manuel d’installation.**
