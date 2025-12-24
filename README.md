@@ -78,7 +78,7 @@ classDiagram
 
 ## ⚙️ Manuel d’installation et d’utilisation
 
-### 1️⃣ Prérequis Kali Linux / Debian
+###  Prérequis Kali Linux / Debian
 
 * **JDK 11+** installé
   Partie Java
@@ -104,7 +104,7 @@ Note : L'installation de php-sqlite3 est indispensable pour éviter l'erreur "co
 
 ---
 
-### 2️⃣ Installation
+### Installation
 
 1. Cloner le dépôt :
 
@@ -132,8 +132,30 @@ Note : L'installation de php-sqlite3 est indispensable pour éviter l'erreur "co
    sudo chmod 777 /var/www/html/
    ```
 ---
+### 📱 Installation & Configuration Android
 
-### 3️⃣ Compilation
+Cette étape permet de visualiser les résultats du scan sur mobile.
+
+1. **Récupérer le projet Android** :
+   * Téléchargez le code source (ZIP) de la branche **Android** ou clonez le dépôt en changeant de branche.
+
+2. **Ouvrir dans Android Studio** :
+   * Lancez **Android Studio**.
+   * Cliquez sur `File` > `Open...`.
+   * Sélectionnez le dossier du projet Android décompressé (celui contenant `app` et `gradle`).
+   * Attendez que Gradle synchronise les dépendances.
+
+3. **⚠️ CONFIGURATION CRITIQUE (Adresse IP)** :
+   Pour que l'application communique avec votre serveur Kali/Apache, vous devez spécifier l'adresse IP correcte.
+   * Ouvrez le fichier `RetrofitClient.java` (généralement dans `app/java/com.exemple.sae302_scanner/RetrofitClient`).
+   * Repérez la ligne : `private static final String BASE_URL = ...`.
+   * **Remplacez l'IP** par l'adresse IP de votre machine serveur (ex: Gateway ou IP Kali).
+   * *Exemple :* `http://192.168.1.25/` (Gardez bien le `/` à la fin).
+
+4. **Lancer l'application** :
+   * Appuyez sur le bouton **Play (▶)** en haut de l'interface.
+   * Choisissez un émulateur ou votre téléphone physique connecté en USB.
+###  Compilation
 
 Dans le dossier `src` :
 
@@ -145,15 +167,7 @@ javac -cp "../lib/*:." *.java
 
 ---
 
-### 4️⃣ Exécution
-
-#### Sous **Windows**
-
-```powershell
-java -cp ".;sqlite-jdbc-3.51.0.0.jar" App
-```
-
-#### Sous **Linux / macOS**
+### Exécution sous **Linux / macOS**
 
 ```bash
 # Exécution du programme
@@ -162,7 +176,7 @@ java -cp "../lib/sqlite-jdbc-3.51.0.0.jar:." App
 
 ---
 
-### 5️⃣ Scénario de vérification (TD2)
+### Scénario de vérification (TD2)
 
 1. **1 →** Créer la table `failles`.
 2. **2 →** Lancer la détection simulée (ajoute 2 failles factices).
@@ -176,7 +190,7 @@ java -cp "../lib/sqlite-jdbc-3.51.0.0.jar:." App
 
 ---
 
-### 6️⃣ Vérification dans la base
+### Vérification dans la base
 
 Ouvrir la base `failles.db` :
 
@@ -210,7 +224,7 @@ sqlite3 failles.db ".dump" > init_db.sql
 
 ---
 
-### 7️⃣ Structure du dépôt
+### Structure de Java
 
 | Dossier/Fichier                | Description                    |
 | ------------------------------ | ------------------------------ |
@@ -229,7 +243,7 @@ sqlite3 failles.db ".dump" > init_db.sql
 
 ---
 
-### 8️⃣ Ajouter un nouvel outil
+### Ajouter un nouvel outil
 
 Créer une classe implémentant `ScanTool` :
 
