@@ -78,9 +78,10 @@ classDiagram
 
 ## ⚙️ Manuel d’installation et d’utilisation
 
-### 1️⃣ Prérequis
+### 1️⃣ Prérequis Kali Linux / Debian
 
 * **JDK 11+** installé
+  Partie Java
   Vérifier :
 
   ```bash
@@ -93,6 +94,14 @@ classDiagram
 * (Optionnel) **DB Browser for SQLite** pour visualiser `failles.db`.
 * Fonctionne sur **Windows**, **Linux** et **macOS**.
 
+Partie Web (Serveur Apache/PHP)
+```bash
+sudo apt install apache2
+sudo apt install php php-sqlite3
+sudo systemctl restart apache2
+  ```
+Note : L'installation de php-sqlite3 est indispensable pour éviter l'erreur "could not find driver".
+
 ---
 
 ### 2️⃣ Installation
@@ -103,8 +112,25 @@ classDiagram
    git clone <URL_DU_REPO>
    cd <repo>/src
    ```
-2. Copier le fichier `sqlite-jdbc-3.51.0.0.jar` dans `src/` ou `lib/`.
+2. Copier le fichier `sqlite-jdbc-3.51.0.0.jar` dans ou `lib/`
+   
+    ```bash
+   mv sqlite-jdbc-3.51.0.0.jar lib
+   ```
 
+4. Mise en place des fichiers Web : Copiez les fichiers vers le répertoire du serveur Apache :
+   
+   ```bash
+   sudo cp src/failles.php /var/www/html/
+   sudo cp src/failles.db /var/www/html/
+  ```
+
+5. Permissions critiques (SQLite) : Pour que le script PHP puisse lire la base de données, donnez les droits d'écriture au dossier :
+
+  ```bash
+sudo chmod 666 /var/www/html/failles.db
+sudo chmod 777 /var/www/html/
+  ```
 ---
 
 ### 3️⃣ Compilation
