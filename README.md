@@ -112,7 +112,7 @@ Note : L'installation de php-sqlite3 est indispensable pour éviter l'erreur "co
    git clone <URL_DU_REPO>
    cd <repo>/src
    ```
-2. Copier le fichier `sqlite-jdbc-3.51.0.0.jar` dans ou `lib/`
+2. Copier le fichier `sqlite-jdbc-3.51.0.0.jar` dans `lib/`
    
     ```bash
    mv sqlite-jdbc-3.51.0.0.jar lib
@@ -123,14 +123,14 @@ Note : L'installation de php-sqlite3 est indispensable pour éviter l'erreur "co
    ```bash
    sudo cp src/failles.php /var/www/html/
    sudo cp src/failles.db /var/www/html/
-  ```
+   ```
 
 5. Permissions critiques (SQLite) : Pour que le script PHP puisse lire la base de données, donnez les droits d'écriture au dossier :
 
-  ```bash
-sudo chmod 666 /var/www/html/failles.db
-sudo chmod 777 /var/www/html/
-  ```
+   ```bash
+   sudo chmod 666 /var/www/html/failles.db
+   sudo chmod 777 /var/www/html/
+   ```
 ---
 
 ### 3️⃣ Compilation
@@ -221,8 +221,10 @@ sqlite3 failles.db ".dump" > init_db.sql
 | `src/DummyTool.java`           | Exemple d’outil factice        |
 | `src/App.java`                 | Menu console principal         |
 | `lib/sqlite-jdbc-3.51.0.0.jar` | Driver SQLite                  |
-| `failles.db` / `init_db.sql`   | Base de données                |
-| `screens/`                     | Captures de démo               |
+| `failles.db`                   | Base de données                |
+| `failles.php`                  | Site web                       |
+| `api_failles.php`              | API communication Web - Android|
+| `screens/`                     | Captures du projet             |
 | `README.md`                    | Documentation et manuel        |
 
 ---
@@ -259,7 +261,7 @@ Option 8 → Run full scan
 * **Walid Badaoui** — Java / SQLite / Scanner
 * **Alexandre Samperez** — site web
 * **Julien Cruz-Mermy** — Android / tests
-* Pour toute question : ouvrir une *Issue* dans le dépôt GitHub.
+
 
 ---
 
@@ -269,9 +271,9 @@ Option 8 → Run full scan
 * `lib/sqlite-jdbc-3.51.0.0.jar`
 * `failles.db` ou `init_db.sql`
 * `screens/`
-* `README.md` (ce fichier)
+* `README.md`
 * `RACI.md`
-* `IA_report_<nom>.md`
+
 
 ---
 ### Maquette de l'application android
