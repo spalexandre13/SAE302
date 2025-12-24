@@ -84,6 +84,7 @@ classDiagram
   Vérifier :
 
   ```bash
+  sudo apt install -y default-jdk
   javac -version
   java -version
   ```
