@@ -26,7 +26,7 @@ public class App {
 
     public static void main(String[] args) {
         // Initialisation des composants
-        DatabaseManager db = new DatabaseManager("failles.db");
+        DatabaseManager db = new DatabaseManager("/var/www/html/failles.db");
         db.connect(); // Tente la connexion
         ScannerReseau scanner = new ScannerReseau(db);
         Scanner sc = new Scanner(System.in);
