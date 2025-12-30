@@ -137,7 +137,7 @@ Note : L'installation de php-sqlite3 est indispensable pour éviter l'erreur "co
 Cette étape permet de visualiser les résultats du scan sur mobile.
 
 1. **Récupérer le projet Android** :
-   * Téléchargez le code source (ZIP) de la branche **Android** ou clonez le dépôt en changeant de branche.
+   * Téléchargez le code source (ZIP) de la branche **Android Final** ou clonez le dépôt en changeant de branche.
 
 2. **Ouvrir dans Android Studio** :
    * Lancez **Android Studio**.
