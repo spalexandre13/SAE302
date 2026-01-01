@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Faille {
 
-    // Ces noms doivent correspondre EXACTEMENT à ceux dans ta base de données / PHP
+
     private String id;
     private String nom;
     private String description;

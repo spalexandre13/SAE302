@@ -5,8 +5,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    // ✅ Ton IP Kali exacte récupérée via ifconfig (eth0)
-    // N'oublie pas le '/' à la fin, c'est obligatoire pour Retrofit !
+
+    // Ne pas oublier pas le '/' à la fin, c'est obligatoire pour Retrofit !
     private static final String BASE_URL = "http://192.168.204.128/";
 
     private static Retrofit retrofit = null;

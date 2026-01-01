@@ -15,8 +15,8 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private HostAdapter adapter;
+    private RecyclerView recyclerView; // La liste déroulante
+    private HostAdapter adapter; // Celui qui rempli la liste
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchAndGroupFailles() {
-        ApiService apiService = RetrofitClient.getService();
-        Call<List<Faille>> call = apiService.getFailles();
-
+        ApiService apiService = RetrofitClient.getService(); // ON récupère le serveur
+        Call<List<Faille>> call = apiService.getFailles(); // Attends une liste contenant les failles
+        // enqueue lance la commande en arrière plan
         call.enqueue(new Callback<List<Faille>>() {
             @Override
             public void onResponse(Call<List<Faille>> call, Response<List<Faille>> response) {
