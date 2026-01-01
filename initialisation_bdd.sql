@@ -1,50 +1,42 @@
-PRAGMA foreign_keys=OFF;
+-- Fichier d'initialisation de la Base de Données SAE 3.02
+-- Groupe : Samperez, Badaoui, Cruz-Mermy
+-- Description : Structure de la base SQLite et données de démonstration.
+
 BEGIN TRANSACTION;
-CREATE TABLE failles (id INTEGER PRIMARY KEY AUTOINCREMENT, nom TEXT, description TEXT, ip TEXT, severite TEXT, source TEXT, dateDetection TEXT, reference TEXT);
+
+-- 1. Nettoyage préalable (pour éviter les erreurs si on rejoue le script)
+DROP TABLE IF EXISTS "failles";
+
+-- 2. Création de la table principale
+-- Note : Structure simple (monotable) adaptée au prototype Java/Android
+CREATE TABLE IF NOT EXISTS "failles" (
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "nom" TEXT,
+    "description" TEXT,
+    "ip" TEXT,
+    "severite" TEXT,     -- Ex: LOW, MEDIUM, HIGH, CRITICAL
+    "source" TEXT,       -- Ex: Nmap Scanner, Nikto, Simulateur
+    "dateDetection" TEXT,
+    "reference" TEXT
+);
+
+-- 3. Insertion de données de démonstration (Jeu de données varié)
+
+-- A. Données du Simulateur (Pour tester les couleurs dans l'appli)
 INSERT INTO failles VALUES(1,'Port 21 ouvert','Serveur FTP non sécurisé','192.168.1.10','HIGH','Simulateur','2025-11-28','ref-FTP');
 INSERT INTO failles VALUES(2,'Port 80 HTTP','Port HTTP par défaut ouvert','192.168.1.15','MEDIUM','Simulateur','2025-11-28','ref-HTTP');
 INSERT INTO failles VALUES(3,'Port 22 SSH','Port SSH par défaut','192.168.1.20','LOW','Simulateur','2025-11-28','ref-SSH');
-INSERT INTO failles VALUES(4,'Port ouvert: SSH (22/tcp)','Service: ssh | Version: OpenSSH 9.2p1 Debian 2+deb12u5 (protocol 2.0)','10.11.10.30','LOW','Nmap Scanner','2025-11-28','Réf: 22-tcp');
-INSERT INTO failles VALUES(5,'Port ouvert: HTTP (80/tcp)','Service: http | Version: Apache httpd 2.4.65 ((Debian))','192.168.204.128','LOW','Nmap Scanner','2025-12-24','Réf: 80-tcp');
-INSERT INTO failles VALUES(6,'Dossier caché trouvé','/.hta                 (Status: 403) [Size: 280]','192.168.204.128','LOW','Gobuster','2025-12-24','Dir Enum');
-INSERT INTO failles VALUES(7,'Dossier caché trouvé','/.htpasswd            (Status: 403) [Size: 280]','192.168.204.128','LOW','Gobuster','2025-12-24','Dir Enum');
-INSERT INTO failles VALUES(8,'Dossier caché trouvé','/.htaccess            (Status: 403) [Size: 280]','192.168.204.128','LOW','Gobuster','2025-12-24','Dir Enum');
-INSERT INTO failles VALUES(9,'Dossier caché trouvé','/index.html           (Status: 200) [Size: 10703]','192.168.204.128','LOW','Gobuster','2025-12-24','Dir Enum');
-INSERT INTO failles VALUES(10,'Dossier caché trouvé','/javascript           (Status: 301) [Size: 323] [--> http://192.168.204.128/javascript/]','192.168.204.128','LOW','Gobuster','2025-12-24','Dir Enum');
-INSERT INTO failles VALUES(11,'Dossier caché trouvé','/server-status        (Status: 200) [Size: 4375]','192.168.204.128','LOW','Gobuster','2025-12-24','Dir Enum');
-INSERT INTO failles VALUES(12,'Port ouvert : 80/tcp (http)','Version détectée : Apache httpd 2.4.65 ((Debian))','192.168.204.128','MEDIUM','Nmap','2025-12-24','Scan de ports');
-INSERT INTO failles VALUES(13,'Dossier Web : /.hta','                (Status: 403) [Size: 280]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(14,'Dossier Web : /.htpasswd','           (Status: 403) [Size: 280]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(15,'Dossier Web : /.htaccess','           (Status: 403) [Size: 280]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(16,'Dossier Web : /index.html','          (Status: 200) [Size: 10703]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(17,'Dossier Web : /javascript','          (Status: 301) [Size: 323] [--> http://192.168.204.128/javascript/]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(18,'Dossier Web : /server-status','       (Status: 200) [Size: 5209]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(19,'Port ouvert : 80/tcp (http)','Version détectée : Apache httpd 2.4.65 ((Debian))','192.168.204.128','MEDIUM','Nmap','2025-12-24','Scan de ports');
-INSERT INTO failles VALUES(20,'Dossier Web : /.htaccess','           (Status: 403) [Size: 280]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(21,'Dossier Web : /.htpasswd','           (Status: 403) [Size: 280]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(22,'Dossier Web : /.hta','                (Status: 403) [Size: 280]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(23,'Dossier Web : /index.html','          (Status: 200) [Size: 10703]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(24,'Dossier Web : /javascript','          (Status: 301) [Size: 323] [--> http://192.168.204.128/javascript/]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(25,'Dossier Web : /server-status','       (Status: 200) [Size: 5491]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(26,'Port ouvert : 80/tcp (http)','Version détectée : Apache httpd 2.4.65 ((Debian))','192.168.204.128','MEDIUM','Nmap','2025-12-24','Scan de ports');
-INSERT INTO failles VALUES(27,'Dossier Web : /.htaccess','           (Status: 403) [Size: 280]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(28,'Dossier Web : /.hta','                (Status: 403) [Size: 280]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(29,'Dossier Web : /.htpasswd','           (Status: 403) [Size: 280]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(30,'Dossier Web : /index.html','          (Status: 200) [Size: 10703]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(31,'Dossier Web : /javascript','          (Status: 301) [Size: 323] [--> http://192.168.204.128/javascript/]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(32,'Dossier Web : /server-status','       (Status: 200) [Size: 5512]','192.168.204.128','LOW','Gobuster','2025-12-24','Enumération Web');
-INSERT INTO failles VALUES(33,'Vulnérabilité Web (Config)','Target IP:          192.168.204.128','192.168.204.128','LOW','Nikto','2025-12-24','Web Config Scan');
-INSERT INTO failles VALUES(34,'Vulnérabilité Web (Config)','Target Hostname:    192.168.204.128','192.168.204.128','LOW','Nikto','2025-12-24','Web Config Scan');
-INSERT INTO failles VALUES(35,'Vulnérabilité Web (Config)','Target Port:        80','192.168.204.128','LOW','Nikto','2025-12-24','Web Config Scan');
-INSERT INTO failles VALUES(36,'Vulnérabilité Web (Config)','Start Time:         2025-12-24 11:12:02 (GMT-5)','192.168.204.128','LOW','Nikto','2025-12-24','Web Config Scan');
-INSERT INTO failles VALUES(37,'Vulnérabilité Web (Config)','Server: Apache/2.4.65 (Debian)','192.168.204.128','LOW','Nikto','2025-12-24','Web Config Scan');
-INSERT INTO failles VALUES(38,'Vulnérabilité Web (Config)','/: The anti-clickjacking X-Frame-Options header is not present. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options','192.168.204.128','MEDIUM','Nikto','2025-12-24','Web Config Scan');
-INSERT INTO failles VALUES(39,'Vulnérabilité Web (Config)','/: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/','192.168.204.128','MEDIUM','Nikto','2025-12-24','Web Config Scan');
-INSERT INTO failles VALUES(40,'Vulnérabilité Web (Config)','No CGI Directories found (use ''-C all'' to force check all possible dirs)','192.168.204.128','LOW','Nikto','2025-12-24','Web Config Scan');
-INSERT INTO failles VALUES(41,'Vulnérabilité Web (Config)','/: Server may leak inodes via ETags, header found with file /, inode: 29cf, size: 63e5b9d733880, mtime: gzip. See: http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2003-1418','192.168.204.128','MEDIUM','Nikto','2025-12-24','Web Config Scan');
-INSERT INTO failles VALUES(42,'Vulnérabilité Web (Config)','OPTIONS: Allowed HTTP Methods: GET, POST, OPTIONS, HEAD .','192.168.204.128','LOW','Nikto','2025-12-24','Web Config Scan');
-INSERT INTO failles VALUES(43,'Vulnérabilité Web (Config)','/server-status: This reveals Apache information. Comment out appropriate line in the Apache conf file or restrict access to allowed sources. See: OSVDB-561','192.168.204.128','LOW','Nikto','2025-12-24','Web Config Scan');
-INSERT INTO failles VALUES(44,'Vulnérabilité Web (Config)','8102 requests: 0 error(s) and 5 item(s) reported on remote host','192.168.204.128','LOW','Nikto','2025-12-24','Web Config Scan');
-DELETE FROM sqlite_sequence;
-INSERT INTO sqlite_sequence VALUES('failles',44);
+
+-- B. Données Réelles - Scan Nmap (Infrastructure)
+INSERT INTO failles VALUES(4,'Port ouvert: SSH (22/tcp)','Service: ssh | Version: OpenSSH 9.2p1 Debian 2+deb12u5','10.11.10.30','LOW','Nmap Scanner','2025-11-28','Réf: 22-tcp');
+INSERT INTO failles VALUES(5,'Port ouvert: HTTP (80/tcp)','Service: http | Version: Apache httpd 2.4.65 ((Debian))','192.168.204.128','MEDIUM','Nmap Scanner','2025-12-24','Réf: 80-tcp');
+
+-- C. Données Réelles - Scan Gobuster (Dossiers cachés)
+INSERT INTO failles VALUES(6,'Dossier caché trouvé','/.htaccess (Status: 403) [Size: 280]','192.168.204.128','LOW','Gobuster','2025-12-24','Dir Enum');
+INSERT INTO failles VALUES(7,'Dossier caché trouvé','/server-status (Status: 200) [Size: 4375]','192.168.204.128','LOW','Gobuster','2025-12-24','Dir Enum');
+
+-- D. Données Réelles - Scan Nikto (Vulnérabilités Web)
+INSERT INTO failles VALUES(38,'Vulnérabilité Web (Config)','X-Frame-Options header is not present (Clickjacking risk)','192.168.204.128','MEDIUM','Nikto','2025-12-24','Web Config Scan');
+INSERT INTO failles VALUES(39,'Vulnérabilité Web (Config)','X-Content-Type-Options header is not set','192.168.204.128','MEDIUM','Nikto','2025-12-24','Web Config Scan');
+
 COMMIT;
