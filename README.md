@@ -272,8 +272,8 @@ Option 8 → Run full scan
 
 ### 📧 Contacts
 
-* **Walid Badaoui** — Java / SQLite 
-* **Alexandre Samperez** — Site web / Scanner
+* **Walid Badaoui** — Java / SQLite / Scanner
+* **Alexandre Samperez** — Site web / Gestion de projets / Communications
 * **Julien Cruz-Mermy** — Android / tests
 
 
